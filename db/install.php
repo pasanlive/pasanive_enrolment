@@ -4,7 +4,7 @@
  * This file replaces the legacy STATEMENTS section in db/install.xml,
  * lib.php/modulename_install() post installation hook and partially defaults.php
  *
- * @package    pasanlive_enrolment_module
+ * @package    mod_pasanlive_enrolment
  */
 
 /**
@@ -12,7 +12,7 @@
  *
  * @see upgrade_plugins_modules()
  */
-function xmldb_pasanlive_enrolment_module_install() {
+function xmldb_pasanliveenrolment_module_install() {
 }
 
 /**
@@ -20,5 +20,5 @@ function xmldb_pasanlive_enrolment_module_install() {
  *
  * @see upgrade_plugins_modules()
  */
-function xmldb_pasanlive_enrolment_module_install_recovery() {
+function xmldb_pasanliveenrolment_module_install_recovery() {
 }

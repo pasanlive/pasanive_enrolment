@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The main pasantest configuration form
+ * The main pasanliveenrolment configuration form
  *
  * @package    mod_pasanlive_enrolment
  */
@@ -13,7 +13,7 @@ require_once($CFG->dirroot.'/course/moodleform_mod.php');
 /**
  * Module instance settings form
  */
-class mod_pasantest_mod_form extends moodleform_mod {
+class mod_pasanliveenrolment_mod_form extends moodleform_mod {
 
     /**
      * Defines forms elements
@@ -41,12 +41,12 @@ class mod_pasantest_mod_form extends moodleform_mod {
         $this->add_intro_editor();
 
         //-------------------------------------------------------------------------------
-        // Adding the rest of pasantest settings, spreeading all them into this fieldset
+        // Adding the rest of pasanliveenrolment settings, spreeading all them into this fieldset
         // or adding more fieldsets ('header' elements) if needed for better logic
-        $mform->addElement('static', 'label1', 'pasantestsetting1', 'Your pasantest fields go here. Replace me!');
+        $mform->addElement('static', 'label1', 'pasanliveenrolmentsetting1', 'Your pasanliveenrolment fields go here. Replace me!');
 
-        $mform->addElement('header', 'pasantestfieldset', get_string('pasantestfieldset', 'pasantest'));
-        $mform->addElement('static', 'label2', 'pasantestsetting2', 'Your pasantest fields go here. Replace me!');
+        $mform->addElement('header', 'pasanliveenrolmentfieldset', get_string('pasanliveenrolmentfieldset', 'pasanliveenrolment'));
+        $mform->addElement('static', 'label2', 'pasanliveenrolmentsetting2', 'Your pasanliveenrolment fields go here. Replace me!');
 
         //-------------------------------------------------------------------------------
         // add standard elements, common to all modules

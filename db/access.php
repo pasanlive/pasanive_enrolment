@@ -7,7 +7,7 @@
  * installed or updated. Whenever the capability definitions are updated,
  * the module version number should be bumped up.
  *
- * @package    pasanlive_enrolment_module
+ * @package    mod_pasanlive_enrolment
  */
 
 defined('MOODLE_INTERNAL') || die();
@@ -15,7 +15,7 @@ defined('MOODLE_INTERNAL') || die();
 $capabilities = array(
 /***************************** remove these comment marks and modify the code as needed
 
-	'mod/pasantest:addinstance' => array(
+	'mod/pasanliveenrolment:addinstance' => array(
 			'riskbitmask' => RISK_XSS,
 	
 			'captype' => 'write',
@@ -27,7 +27,7 @@ $capabilities = array(
 			'clonepermissionsfrom' => 'moodle/course:manageactivities'
 	),
 
-    'mod/pasantest:view' => array(
+    'mod/pasanliveenrolment:view' => array(
         'captype' => 'read',
         'contextlevel' => CONTEXT_MODULE,
         'legacy' => array(
@@ -39,7 +39,7 @@ $capabilities = array(
         )
     ),
 
-    'mod/pasantest:submit' => array(
+    'mod/pasanliveenrolment:submit' => array(
         'riskbitmask' => RISK_SPAM,
         'captype' => 'write',
         'contextlevel' => CONTEXT_MODULE,

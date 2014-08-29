@@ -5,7 +5,7 @@
  * You can have a rather longer description of the file as well,
  * if you like, and it can span multiple lines.
  *
- * @package    mod_pasanlive_enrolment_module
+ * @package    mod_pasanlive_enrolment
  */
 require_once (dirname ( dirname ( dirname ( __FILE__ ) ) ) . '/config.php');
 require_once (dirname ( __FILE__ ) . '/lib.php');
@@ -18,17 +18,17 @@ if ($id) {
 	$course = $DB->get_record ( 'course', array (
 			'id' => $cm->course 
 	), '*', MUST_EXIST );
-	$pasantest = $DB->get_record ( 'pasanlive_enrolment', array (
+	$pasanliveenrolment = $DB->get_record ( 'pasanlive_enrolment', array (
 			'id' => $cm->instance 
 	), '*', MUST_EXIST );
 } elseif ($n) {
-	$pasantest = $DB->get_record ( 'pasanlive_enrolment', array (
+	$pasanliveenrolment = $DB->get_record ( 'pasanlive_enrolment', array (
 			'id' => $n 
 	), '*', MUST_EXIST );
 	$course = $DB->get_record ( 'course', array (
-			'id' => $pasantest->course 
+			'id' => $pasanliveenrolment->course 
 	), '*', MUST_EXIST );
-	$cm = get_coursemodule_from_instance ( 'pasanlive_enrolment', $pasantest->id, $course->id, false, MUST_EXIST );
+	$cm = get_coursemodule_from_instance ( 'pasanlive_enrolment', $pasanliveenrolment->id, $course->id, false, MUST_EXIST );
 } else {
 	print_error ( 'You must specify a course_module ID or an instance ID' );
 }
@@ -36,27 +36,27 @@ if ($id) {
 require_login ( $course, true, $cm );
 $context = context_module::instance ( $cm->id );
 
-add_to_log ( $course->id, 'pasanlive_enrolment', 'view', "view.php?id={$cm->id}", $pasantest->enrolment_status, $cm->id );
+add_to_log ( $course->id, 'pasanlive_enrolment', 'view', "view.php?id={$cm->id}", $pasanliveenrolment->enrolment_status, $cm->id );
 
 // / Print the page header
 
 $PAGE->set_url ( '/mod/pasanlive_enrolment/view.php', array (
 		'id' => $cm->id 
 ) );
-$PAGE->set_title ( format_string ( $pasantest->name ) );
+$PAGE->set_title ( format_string ( $pasanliveenrolment->name ) );
 $PAGE->set_heading ( format_string ( $course->fullname ) );
 $PAGE->set_context ( $context );
 
 // other things you may want to set - remove if not needed
 // $PAGE->set_cacheable(false);
 // $PAGE->set_focuscontrol('some-html-id');
-// $PAGE->add_body_class('pasantest-'.$somevar);
+// $PAGE->add_body_class('pasanliveenrolment-'.$somevar);
 
 // Output starts here
 echo $OUTPUT->header ();
 
-// if ($pasantest->intro) { // Conditions to show the intro can change to look for own settings or whatever
-// 	echo $OUTPUT->box ( format_module_intro ( 'pasantest', $pasantest, $cm->id ), 'generalbox mod_introbox', 'pasantestintro' );
+// if ($pasanliveenrolment->intro) { // Conditions to show the intro can change to look for own settings or whatever
+// 	echo $OUTPUT->box ( format_module_intro ( 'pasanliveenrolment', $pasanliveenrolment, $cm->id ), 'generalbox mod_introbox', 'pasanliveenrolmentintro' );
 // }
 
 $list = get_courses ();

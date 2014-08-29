@@ -1,9 +1,9 @@
 <?php
 /**
- * English strings for pasantest
+ * English strings for pasanliveenrolment
 
  *
- * @package    mod_pasantest
+ * @package    mod_pasanlive_enrolment
  */
 
 defined('MOODLE_INTERNAL') || die();
@@ -11,10 +11,10 @@ defined('MOODLE_INTERNAL') || die();
 $string['modulename'] = 'pasanlive_enrolment';
 $string['modulenameplural'] = 'pasanlive_enrolment';
 $string['modulename_help'] = 'Use the pasanlive_enrolment module for... | The pasanlive_enrolment module allows...';
-$string['pasantestfieldset'] = 'Custom example fieldset';
+$string['pasanliveenrolmentfieldset'] = 'Custom example fieldset';
 $string['pasanlive_enrolment_name'] = 'Pasanlive Enrolment';
-$string['pasantestname_help'] = 'This is the content of the help tooltip associated with the pasantestname field. Markdown syntax is supported.';
-$string['pasantest'] = 'pasanlive_enrolment';
+$string['pasanliveenrolmentname_help'] = 'This is the content of the help tooltip associated with the pasanliveenrolmentname field. Markdown syntax is supported.';
+$string['pasanliveenrolment'] = 'pasanlive_enrolment';
 $string['pluginadministration'] = 'pasanlive_enrolment administration';
 $string['pluginname'] = 'pasanlive_enrolment';
 

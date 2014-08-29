@@ -6,7 +6,7 @@
  * This code fragment is called by moodle_needs_upgrading() and
  * /admin/index.php
  *
- * @package    mod_pasantest
+ * @package    mod_pasanlive_enrolment
  */
 
 defined('MOODLE_INTERNAL') || die();

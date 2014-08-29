@@ -2,7 +2,7 @@
 /**
  * Definition of log events
  *
- * @package    pasanlive_enrolment_module
+ * @package    mod_pasanlive_enrolment
  */
 
 defined('MOODLE_INTERNAL') || die();

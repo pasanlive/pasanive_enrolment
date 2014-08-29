@@ -7,7 +7,7 @@
  * @package    mod_pasanlive_enrolment
  */
 
-/// Replace pasantest with the name of your module and remove this line
+/// Replace pasanliveenrolment with the name of your module and remove this line
 
 require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 require_once(dirname(__FILE__).'/lib.php');
@@ -22,15 +22,15 @@ add_to_log($course->id, 'pasanlive_enrolment', 'view all', 'index.php?id='.$cour
 
 $coursecontext = context_course::instance($course->id);
 
-$PAGE->set_url('/mod/pasanlive_enrolment/index.php', array('id' => $id));
+$PAGE->set_url('/mod/pasanliveenrolment/index.php', array('id' => $id));
 $PAGE->set_title(format_string($course->fullname));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($coursecontext);
 
 echo $OUTPUT->header();
 
-if (! $pasantests = get_all_instances_in_course('pasanlive_enrolment', $course)) {
-    notice(get_string('nopasantests', 'pasanlive_enrolment'), new moodle_url('/course/view.php', array('id' => $course->id)));
+if (! $pasanliveenrolments = get_all_instances_in_course('pasanlive_enrolment', $course)) {
+    notice(get_string('nopasanliveenrolments', 'pasanlive_enrolment'), new moodle_url('/course/view.php', array('id' => $course->id)));
 }
 
 $table = new html_table();
@@ -45,20 +45,20 @@ if ($course->format == 'weeks') {
     $table->align = array('left', 'left', 'left');
 }
 
-foreach ($pasantests as $pasantest) {
-    if (!$pasantest->visible) {
+foreach ($pasanliveenrolments as $pasanliveenrolment) {
+    if (!$pasanliveenrolment->visible) {
         $link = html_writer::link(
-            new moodle_url('/mod/pasanlive_enrolment.php', array('id' => $pasantest->coursemodule)),
-            format_string($pasantest->name, true),
+            new moodle_url('/mod/pasanliveenrolment.php', array('id' => $pasanliveenrolment->coursemodule)),
+            format_string($pasanliveenrolment->name, true),
             array('class' => 'dimmed'));
     } else {
         $link = html_writer::link(
-            new moodle_url('/mod/pasanlive_enrolment.php', array('id' => $pasantest->coursemodule)),
-            format_string($pasantest->name, true));
+            new moodle_url('/mod/pasanliveenrolment.php', array('id' => $pasanliveenrolment->coursemodule)),
+            format_string($pasanliveenrolment->name, true));
     }
 
     if ($course->format == 'weeks' or $course->format == 'topics') {
-        $table->data[] = array($pasantest->section, $link);
+        $table->data[] = array($pasanliveenrolment->section, $link);
     } else {
         $table->data[] = array($link);
     }

@@ -10,7 +10,7 @@
  * it cannot do itself, it will tell you what you need to do.  The commands in
  * here will all be database-neutral, using the functions defined in DLL libraries.
  *
- * @package    pasanlive_enrolment_module
+ * @package    mod_pasanlive_enrolment
  */
 
 defined('MOODLE_INTERNAL') || die();
@@ -21,7 +21,7 @@ defined('MOODLE_INTERNAL') || die();
  * @param int $oldversion
  * @return bool
  */
-function xmldb_pasanlive_enrolment_upgrade($oldversion) {
+function xmldb_pasanliveenrolment_upgrade($oldversion) {
     global $DB;
 
     $dbman = $DB->get_manager(); // loads ddl manager and xmldb classes
@@ -115,7 +115,7 @@ function xmldb_pasanlive_enrolment_upgrade($oldversion) {
     	echo 'table create status : ' . $status;
     	 
     	
-    	upgrade_mod_savepoint(true, 2014082400, 'pasantest');
+    	upgrade_mod_savepoint(true, 2014082400, 'pasanliveenrolment');
     }    */
 
     return true;

@@ -3,12 +3,12 @@
 /**
  * @see uninstall_plugin()
  *
- * @package    pasanlive_enrolment_module
+ * @package    mod_pasanlive_enrolment
  */
 
 /**
  * Custom uninstallation procedure
  */
-function xmldb_pasanlive_enrolment_uninstall() {
+function xmldb_pasanliveenrolment_uninstall() {
     return true;
 }

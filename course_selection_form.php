@@ -12,7 +12,7 @@ class course_slection_form extends moodleform {
 		$mform->setType ( 'student_no', PARAM_NOTAGS );
 // 		$mform->setDefault ( 'student_no', 'Please enter your student no' );
 		
-		$mform->addElement ( 'static', 'available_courses_caption', get_string('course_list_caption', 'pasantest'));
+		$mform->addElement ( 'static', 'available_courses_caption', get_string('course_list_caption', 'pasanliveenrolment'));
 		
 		$list = get_courses ();
 		

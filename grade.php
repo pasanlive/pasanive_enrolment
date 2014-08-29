@@ -3,7 +3,7 @@
 /**
  * Redirect the user to the appropriate submission related page
  *
- * @package   mod_pasantest
+ * @package   mod_pasanlive_enrolment
  * @category  grade
  */
 
