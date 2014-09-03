@@ -8,7 +8,7 @@ class course_slection_form extends moodleform {
 		
 		$mform = $this->_form;
 		
-		$mform->addElement ( 'text', 'student_no', 'Student Number' );
+		$mform->addElement ( 'text', 'student_no', get_string('student_number_caption', 'pasanliveenrolment'));
 		$mform->setType ( 'student_no', PARAM_NOTAGS );
 // 		$mform->setDefault ( 'student_no', 'Please enter your student no' );
 		

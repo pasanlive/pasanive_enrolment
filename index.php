@@ -30,7 +30,7 @@ $PAGE->set_context($coursecontext);
 echo $OUTPUT->header();
 
 if (! $pasanliveenrolments = get_all_instances_in_course('pasanlive_enrolment', $course)) {
-    notice(get_string('nopasanliveenrolments', 'pasanlive_enrolment'), new moodle_url('/course/view.php', array('id' => $course->id)));
+    notice(get_string('nopasanliveenrolments', 'pasanliveenrolment'), new moodle_url('/course/view.php', array('id' => $course->id)));
 }
 
 $table = new html_table();
@@ -64,6 +64,6 @@ foreach ($pasanliveenrolments as $pasanliveenrolment) {
     }
 }
 
-echo $OUTPUT->heading(get_string('modulenameplural', 'pasanlive_enrolment'), 2);
+echo $OUTPUT->heading(get_string('modulenameplural', 'pasanliveenrolment'), 2);
 echo html_writer::table($table);
 echo $OUTPUT->footer();
