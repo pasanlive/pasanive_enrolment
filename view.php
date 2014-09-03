@@ -40,7 +40,7 @@ add_to_log ( $course->id, 'pasanlive_enrolment', 'view', "view.php?id={$cm->id}"
 
 // / Print the page header
 
-$PAGE->set_url ( '/mod/pasanlive_enrolment/view.php', array (
+$PAGE->set_url ( '/mod/pasanliveenrolment/view.php', array (
 		'id' => $cm->id 
 ) );
 $PAGE->set_title ( format_string ( $pasanliveenrolment->name ) );

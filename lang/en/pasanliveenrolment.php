@@ -8,17 +8,20 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['modulename'] = 'pasanlive_enrolment';
-$string['modulenameplural'] = 'pasanlive_enrolment';
-$string['modulename_help'] = 'Use the pasanlive_enrolment module for... | The pasanlive_enrolment module allows...';
+$string['modulename'] = 'PasanLive Enrolment';
+$string['modulenameplural'] = 'PasanLive Enrolment';
+$string['modulename_help'] = 'Use the PasanLive Enrolment module for... | The PasanLive Enrolment module allows...';
 $string['pasanliveenrolmentfieldset'] = 'Custom example fieldset';
 $string['pasanlive_enrolment_name'] = 'Pasanlive Enrolment';
 $string['pasanliveenrolmentname_help'] = 'This is the content of the help tooltip associated with the pasanliveenrolmentname field. Markdown syntax is supported.';
-$string['pasanliveenrolment'] = 'pasanlive_enrolment';
-$string['pluginadministration'] = 'pasanlive_enrolment administration';
-$string['pluginname'] = 'pasanlive_enrolment';
+$string['pasanliveenrolment'] = 'PasanLive Enrolment';
+$string['pluginadministration'] = 'PasanLive Enrolment Administration';
+$string['pluginname'] = 'PasanLive Enrolment';
+
+$string['pasanlive_enrolment_tname'] = "Title";
 
 // Content of Course selction page
 $string['student_name_caption'] = 'Student Name';
+$string['student_number_caption'] = 'Student Number';
 $string['course_list_caption'] = 'Please select courses to enroll';
 
