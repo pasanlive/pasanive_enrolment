@@ -14,10 +14,11 @@ class course_slection_form extends moodleform {
 		
 		$mform->addElement ( 'static', 'available_courses_caption', get_string('course_list_caption', 'pasanliveenrolment'));
 		
-		$list = get_courses ();
+		$list = get_courses();
 		
 		foreach ( $list as $c ) {
-			if ($c->category == '2') {
+			if ($c->category == '1') {
+				echo $c->fullname;
 				$mform->addElement("checkbox", 'course_' .$c->id, '', $c->fullname);
 			}
 		}
@@ -30,6 +31,6 @@ class course_slection_form extends moodleform {
 		$mform->addGroup($buttonarray, 'buttonar', '', array(' '), false);
 		$mform->closeHeaderBefore('buttonar');
 		
-// 		$mform->addRule('student_no', "Student number required", 'required');
+		$mform->addRule('student_no', "Student number required", 'required');
 	}
 }

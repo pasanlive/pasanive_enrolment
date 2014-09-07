@@ -53,10 +53,11 @@ function pasanliveenrolment_add_instance(stdClass $pasanliveenrolment, mod_pasan
     global $DB;
 
     $pasanliveenrolment->timecreated = time();
+//     $pasanliveenrolment->stu
 
     # You may have to add extra stuff in here #
 
-    return $DB->insert_record('pasanlive_enrolment', $pasanliveenrolment);
+    return $DB->insert_record('pasanliveenrolment', $pasanliveenrolment);
 }
 
 /**
@@ -78,7 +79,7 @@ function pasanliveenrolment_update_instance(stdClass $pasanliveenrolment, mod_pa
 
     # You may have to add extra stuff in here #
 
-    return $DB->update_record('pasanlive_enrolment', $pasanliveenrolment);
+    return $DB->update_record('pasanliveenrolment', $pasanliveenrolment);
 }
 
 /**
@@ -94,7 +95,7 @@ function pasanliveenrolment_update_instance(stdClass $pasanliveenrolment, mod_pa
 function pasanliveenrolment_delete_instance($id) {
     global $DB;
 
-    if (! $pasanliveenrolment = $DB->get_record('pasanlive_enrolment', array('id' => $id))) {
+    if (! $pasanliveenrolment = $DB->get_record('pasanliveenrolment', array('id' => $id))) {
         return false;
     }
 
@@ -233,7 +234,7 @@ function pasanliveenrolment_scale_used_anywhere($scaleid) {
     global $DB;
 
     /** @example */
-    if ($scaleid and $DB->record_exists('pasanlive_enrolment', array('grade' => -$scaleid))) {
+    if ($scaleid and $DB->record_exists('pasanliveenrolment', array('grade' => -$scaleid))) {
         return true;
     } else {
         return false;
@@ -260,7 +261,7 @@ function pasanliveenrolment_grade_item_update(stdClass $pasanliveenrolment, $gra
     $item['grademax']  = $pasanliveenrolment->grade;
     $item['grademin']  = 0;
 
-    grade_update('mod/pasanliveenrolment', $pasanliveenrolment->course, 'mod', 'pasanlive_enrolment', $pasanliveenrolment->id, 0, null, $item);
+    grade_update('mod/pasanliveenrolment', $pasanliveenrolment->course, 'mod', 'pasanliveenrolment', $pasanliveenrolment->id, 0, null, $item);
 }
 
 /**
@@ -279,7 +280,7 @@ function pasanliveenrolment_update_grades(stdClass $pasanliveenrolment, $userid 
     /** @example */
     $grades = array(); // populate array of grade objects indexed by userid
 
-    grade_update('mod/pasanliveenrolment', $pasanliveenrolment->course, 'mod', 'pasanlive_enrolment', $pasanliveenrolment->id, 0, $grades);
+    grade_update('mod/pasanliveenrolment', $pasanliveenrolment->course, 'mod', 'pasanliveenrolment', $pasanliveenrolment->id, 0, $grades);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

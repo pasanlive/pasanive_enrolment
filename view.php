@@ -14,21 +14,21 @@ $id = optional_param ( 'id', 0, PARAM_INT ); // course_module ID, or
 $n = optional_param ( 'n', 0, PARAM_INT ); // pasanlive_enrolment_module instance ID - it should be named as the first character of the module
 
 if ($id) {
-	$cm = get_coursemodule_from_id ( 'pasanlive_enrolment', $id, 0, false, MUST_EXIST );
+	$cm = get_coursemodule_from_id ( 'pasanliveenrolment', $id, 0, false, MUST_EXIST );
 	$course = $DB->get_record ( 'course', array (
 			'id' => $cm->course 
 	), '*', MUST_EXIST );
-	$pasanliveenrolment = $DB->get_record ( 'pasanlive_enrolment', array (
+	$pasanliveenrolment = $DB->get_record ( 'pasanliveenrolment', array (
 			'id' => $cm->instance 
 	), '*', MUST_EXIST );
 } elseif ($n) {
-	$pasanliveenrolment = $DB->get_record ( 'pasanlive_enrolment', array (
+	$pasanliveenrolment = $DB->get_record ( 'pasanliveenrolment', array (
 			'id' => $n 
 	), '*', MUST_EXIST );
 	$course = $DB->get_record ( 'course', array (
 			'id' => $pasanliveenrolment->course 
 	), '*', MUST_EXIST );
-	$cm = get_coursemodule_from_instance ( 'pasanlive_enrolment', $pasanliveenrolment->id, $course->id, false, MUST_EXIST );
+	$cm = get_coursemodule_from_instance ( 'pasanliveenrolment', $pasanliveenrolment->id, $course->id, false, MUST_EXIST );
 } else {
 	print_error ( 'You must specify a course_module ID or an instance ID' );
 }
@@ -36,7 +36,7 @@ if ($id) {
 require_login ( $course, true, $cm );
 $context = context_module::instance ( $cm->id );
 
-add_to_log ( $course->id, 'pasanlive_enrolment', 'view', "view.php?id={$cm->id}", $pasanliveenrolment->enrolment_status, $cm->id );
+add_to_log ( $course->id, 'pasanlive_enrolment', 'view', "view.php?id={$cm->id}", $pasanliveenrolment->id, $cm->id );
 
 // / Print the page header
 
@@ -60,6 +60,8 @@ echo $OUTPUT->header ();
 // }
 
 $list = get_courses ();
+
+echo 'course count ' . $list;
 
 // Replace the following lines with you own code
 echo $OUTPUT->heading ( 'Course Selection' );
