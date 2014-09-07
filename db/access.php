@@ -13,8 +13,6 @@
 defined('MOODLE_INTERNAL') || die();
 
 $capabilities = array(
-/***************************** remove these comment marks and modify the code as needed
-
 	'mod/pasanliveenrolment:addinstance' => array(
 			'riskbitmask' => RISK_XSS,
 	
@@ -47,6 +45,5 @@ $capabilities = array(
             'student' => CAP_ALLOW
         )
     ),
-******************************/
 );
 
