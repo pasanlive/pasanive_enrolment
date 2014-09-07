@@ -10,6 +10,28 @@
 require_once (dirname ( dirname ( dirname ( __FILE__ ) ) ) . '/config.php');
 require_once (dirname ( __FILE__ ) . '/lib.php');
 
+global $CFG;
+global $COURSE, $USER;
+
+$context = context_course::instance($COURSE->id);
+
+$isadmin = false;
+$isteacher = false;
+
+$roles = get_user_roles($context, $USER->id);
+$admins = get_admins();
+
+foreach($admins as $admin) {
+	if ($USER->id == $admin->id) {
+		$isadmin = true;
+		echo 'you are a admin user';
+		break;
+	}
+}
+
+if (user_has_role_assignment($USER->id, 3))
+	$isteacher = true;
+
 $id = optional_param ( 'id', 0, PARAM_INT ); // course_module ID, or
 $n = optional_param ( 'n', 0, PARAM_INT ); // pasanlive_enrolment_module instance ID - it should be named as the first character of the module
 
@@ -39,7 +61,6 @@ $context = context_module::instance ( $cm->id );
 add_to_log ( $course->id, 'pasanlive_enrolment', 'view', "view.php?id={$cm->id}", $pasanliveenrolment->id, $cm->id );
 
 // / Print the page header
-
 $PAGE->set_url ( '/mod/pasanliveenrolment/view.php', array (
 		'id' => $cm->id 
 ) );
@@ -47,41 +68,28 @@ $PAGE->set_title ( format_string ( $pasanliveenrolment->name ) );
 $PAGE->set_heading ( format_string ( $course->fullname ) );
 $PAGE->set_context ( $context );
 
-// other things you may want to set - remove if not needed
-// $PAGE->set_cacheable(false);
-// $PAGE->set_focuscontrol('some-html-id');
-// $PAGE->add_body_class('pasanliveenrolment-'.$somevar);
-
 // Output starts here
 echo $OUTPUT->header ();
 
-// if ($pasanliveenrolment->intro) { // Conditions to show the intro can change to look for own settings or whatever
-// 	echo $OUTPUT->box ( format_module_intro ( 'pasanliveenrolment', $pasanliveenrolment, $cm->id ), 'generalbox mod_introbox', 'pasanliveenrolmentintro' );
-// }
-
 $list = get_courses ();
-
-echo 'course count ' . $list;
 
 // Replace the following lines with you own code
 echo $OUTPUT->heading ( 'Course Selection' );
-// print_r ( $list [2] );
-// echo '#################################<br />';
-// foreach ( $list as $c ) {
-// 	if ($c->category == '2') {
-// 		print_r ( $c->fullname );
-// 		echo '<br />';
-// 	}
-// }
 
-// echo '>>>>>';
+if ($isadmin) {
+	require_once 'forms/admin_form.php';
+} else if ($isteacher) {
+	echo 'You are a teacher';
+} else {
+	require_once ('forms/course_selection_form.php');
+	$mform = new course_slection_form();
+	
+	$mform->display();
+}
 
 
-require_once ('course_selection_form.php');
 
-$mform = new course_slection_form();
 
-$mform->display();
 // Finish the page
 
 // echo '>>>>>';
