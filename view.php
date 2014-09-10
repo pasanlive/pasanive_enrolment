@@ -78,6 +78,8 @@ echo $OUTPUT->heading ( 'Course Selection' );
 
 if ($isadmin) {
 	require_once 'forms/admin_form.php';
+	$mform = new admin_form();
+	$mform->display();
 } else if ($isteacher) {
 	echo 'You are a teacher';
 } else {
