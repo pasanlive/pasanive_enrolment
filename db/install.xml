@@ -21,6 +21,14 @@
       </INDEXES>
     </TABLE>
     
+    <TABLE NAME="pasanlive_course_allocation" COMMENT="course allocation for each semester">
+        <FIELDS>
+            <FIELD SEQUENCE="true" TYPE="int" NOTNULL="true" NAME="id"/>
+            <FIELD SEQUENCE="false" TYPE="char" NOTNULL="true" NAME="year" LENGTH="4" PREVIOUS="id" NEXT="semester"/>
+            <FIELD SEQUENCE="false" TYPE="int" NOTNULL="true" NAME="semester" PREVIOUS="year" NEXT="course_id"/>
+        </FIELDS>
+    </TABLE>
+    
     <TABLE NAME="pasanlive_enrolment_info" COMMENT="Student enrolment info">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="student_id"/>
