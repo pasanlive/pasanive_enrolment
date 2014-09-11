@@ -114,6 +114,33 @@ function xmldb_pasanliveenrolment_upgrade($oldversion) {
 		
 		upgrade_mod_savepoint(true, 2014090701, 'pasanliveenrolment');
 	}
+	
+	if ($oldversion < 2014091100) {
+		$table = new xmldb_table('pasanlive_course_allocation');
+		
+		$field1 = new xmldb_field('id', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, XMLDB_SEQUENCE, null, null);
+		$field2 = new xmldb_field('year', XMLDB_TYPE_CHAR, '4', null, XMLDB_NOTNULL, null, null, 'id');
+		$field3 = new xmldb_field('semester', XMLDB_TYPE_TEXT, null, null, XMLDB_NOTNULL, null, null, 'year');
+		$field4 = new xmldb_field('course_id', XMLDB_TYPE_INTEGER, '4', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, null, 'semester');
+		$field5 = new xmldb_field('timecreated', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, '0','course_id');
+		$field6 = new xmldb_field('timemodified', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, '0','timecreated');
+			
+		$key = new xmldb_key('primary');
+		$key->set_attributes(XMLDB_KEY_PRIMARY, array('id'), null, null);
+		
+		$table->addField($field1);
+		$table->addField($field2);
+		$table->addField($field3);
+		$table->addField($field4);
+		$table->addField($field5);
+		$table->addField($field6);
+		
+		$table->addKey($key);
+		
+		$status = $dbman->create_table($table);
+		
+		upgrade_mod_savepoint(true, 2014091100, 'pasanliveenrolment');
+	}
 
 
 	return true;
