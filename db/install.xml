@@ -23,10 +23,10 @@
     
     <TABLE NAME="pasanlive_course_allocation" COMMENT="course allocation for each semester">
         <FIELDS>
-            <FIELD SEQUENCE="true" TYPE="int" NOTNULL="true" NAME="id"/>
-            <FIELD SEQUENCE="false" TYPE="char" NOTNULL="true" NAME="year" LENGTH="4" PREVIOUS="id" NEXT="semester"/>
-            <FIELD SEQUENCE="false" TYPE="int" NOTNULL="true" NAME="semester" PREVIOUS="year" NEXT="course_id"/>
-            <FIELD SEQUENCE="false" TYPE="char" NOTNULL="true" NAME="course_id" PREVIOUS="semester"/>
+            <FIELD NAME="id" SEQUENCE="true" TYPE="int" NOTNULL="true" LENGTH="10" UNSIGNED="true" NEXT="year"/>
+            <FIELD NAME="year" SEQUENCE="false" TYPE="char" NOTNULL="true" LENGTH="4" PREVIOUS="id" NEXT="semester"/>
+            <FIELD NAME="semester" SEQUENCE="false" TYPE="int" NOTNULL="true" LENGTH="1" PREVIOUS="year" NEXT="course_id"/>
+            <FIELD NAME="course_id" SEQUENCE="false" TYPE="char" NOTNULL="true" PREVIOUS="semester"/>
             <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="course_id" NEXT="timemodified"/>
         	<FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="timecreated"/>
         </FIELDS>
