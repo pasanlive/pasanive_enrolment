@@ -24,7 +24,7 @@
     <TABLE NAME="pasanlive_course_allocation" COMMENT="course allocation for each semester">
         <FIELDS>
             <FIELD NAME="id" SEQUENCE="true" TYPE="int" NOTNULL="true" LENGTH="10" UNSIGNED="true" NEXT="group"/>
-            <FIELD NAME="group" SEQUENCE="false" TYPE="char" NOTNULL="true" LENGTH="3" PREVIOUS="id" NEXT="year"/>
+            <FIELD NAME="group" SEQUENCE="false" TYPE="char" NOTNULL="true" LENGTH="10" PREVIOUS="id" NEXT="year"/>
             <FIELD NAME="year" SEQUENCE="false" TYPE="char" NOTNULL="true" LENGTH="4" PREVIOUS="group" NEXT="semester"/>
             <FIELD NAME="semester" SEQUENCE="false" TYPE="int" NOTNULL="true" LENGTH="1" PREVIOUS="year" NEXT="course_id"/>
             <FIELD NAME="course_id" SEQUENCE="false" TYPE="char" NOTNULL="true" PREVIOUS="semester" NEXT="is_optional"/>

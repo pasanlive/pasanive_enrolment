@@ -115,15 +115,17 @@ function xmldb_pasanliveenrolment_upgrade($oldversion) {
 		upgrade_mod_savepoint(true, 2014090701, 'pasanliveenrolment');
 	}
 	
-	if ($oldversion < 2014091100) {
+	if ($oldversion < 2014091200) {
 		$table = new xmldb_table('pasanlive_course_allocation');
 		
 		$field1 = new xmldb_field('id', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, XMLDB_SEQUENCE, null, null);
-		$field2 = new xmldb_field('year', XMLDB_TYPE_CHAR, '4', null, XMLDB_NOTNULL, null, null, 'id');
-		$field3 = new xmldb_field('semester', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, null, 'year');
-		$field4 = new xmldb_field('course_id', XMLDB_TYPE_INTEGER, '4', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, null, 'semester');
-		$field5 = new xmldb_field('timecreated', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, '0','course_id');
-		$field6 = new xmldb_field('timemodified', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, '0','timecreated');
+		$field2 = new xmldb_field('group', XMLDB_TYPE_CHAR, '10', null, XMLDB_NOTNULL, null, null, 'id');
+		$field3 = new xmldb_field('year', XMLDB_TYPE_CHAR, '4', null, XMLDB_NOTNULL, null, null, 'group');
+		$field4 = new xmldb_field('semester', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, null, 'year');
+		$field5 = new xmldb_field('course_id', XMLDB_TYPE_INTEGER, '4', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, null, 'semester');
+		$field6 = new xmldb_field('is_optional', XMLDB_TYPE_BOOLEAN, NULL, null, XMLDB_NOTNULL, null, null, 'course_id');
+		$field7 = new xmldb_field('timecreated', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, '0','is_optional');
+		$field8 = new xmldb_field('timemodified', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, '0','timecreated');
 			
 		$key = new xmldb_key('primary');
 		$key->set_attributes(XMLDB_KEY_PRIMARY, array('id'), null, null);
@@ -134,6 +136,8 @@ function xmldb_pasanliveenrolment_upgrade($oldversion) {
 		$table->addField($field4);
 		$table->addField($field5);
 		$table->addField($field6);
+		$table->addField($field7);
+		$table->addField($field8);
 		
 		$table->addKey($key);
 		
