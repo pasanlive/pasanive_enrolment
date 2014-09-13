@@ -145,6 +145,14 @@ function xmldb_pasanliveenrolment_upgrade($oldversion) {
 		
 		upgrade_mod_savepoint(true, 2014091201, 'pasanliveenrolment');
 	}
+	
+	if ($oldversion < 2014091300) {
+		$table = new xmldb_table('pasanlive_course_allocation');
+		
+		$dbman->rename_field($table, 'is_optional', 'is_compulsory', $continue=true, $feedback=true);
+		
+		upgrade_mod_savepoint(true, 2014091300, 'pasanliveenrolment');
+	}
 
 
 	return true;

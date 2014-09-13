@@ -28,7 +28,7 @@
             <FIELD NAME="year" SEQUENCE="false" TYPE="char" NOTNULL="true" LENGTH="4" PREVIOUS="group" NEXT="semester"/>
             <FIELD NAME="semester" SEQUENCE="false" TYPE="int" NOTNULL="true" LENGTH="1" PREVIOUS="year" NEXT="course_id"/>
             <FIELD NAME="course_id" SEQUENCE="false" TYPE="char" NOTNULL="true" LENGTH="10" PREVIOUS="semester" NEXT="is_optional"/>
-            <FIELD NAME="is_optional" SEQUENCE="false" TYPE="int" NOTNULL="true" LENGTH="10" PREVIOUS="course_id" NEXT="timecreated"/>
+            <FIELD NAME="is_compulsory" SEQUENCE="false" TYPE="int" NOTNULL="true" LENGTH="10" PREVIOUS="course_id" NEXT="timecreated"/>
             <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="course_id" NEXT="timemodified"/>
         	<FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="timecreated"/>
         </FIELDS>
