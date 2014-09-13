@@ -12,14 +12,30 @@ class admin_form extends moodleform {
 		
 		$date = usergetdate(time());
 		
-		$mform->addElement('text', 'year', get_string('academic_year', 'pasanliveenrolment'));
-		$mform->setType ( 'year', PARAM_NOTAGS );
-		$mform->setDefault ( 'year', $date['year']);
+		$semesters = array(1, 2, 3, 4);
+		$groups = array('MCS', "MIT", 'MIS');
+// 		$added_courses = array();
+		$list = get_courses();
+		
+		$availableCourses = array();
+		
+		foreach ( $list as $c ) {
+			if ($c->category == '1') {
+				$availableCourses[$c->idnumber] = $c->idnumber . ' : ' . $c->fullname;
+			}
+		}
+		
+		
+		$mform->addElement('select', 'group', get_string('group_caption', 'pasanliveenrolment'), $groups);
+		
+		$mform->addElement('select', 'semester', get_string('semester_caption', 'pasanliveenrolment'), $semesters); 
 		
 		$mform->addElement('header', 'addCoursesForSemester', get_string('add_courses_for_semester', 'pasanliveenrolment'));
 		
+		$availableCourseList = $mform->addElement('select', 'available_course_list', '', $availableCourses);
+		$availableCourseList->setMultiple(true);
+		
 		$mform->addElement('header', 'selectCompulsoryCoursesHeader', get_string('compulsory_courses_select_header', 'pasanliveenrolment'));
-		$list = get_courses();
 		
 		foreach ( $list as $c ) {
 			if ($c->category == '1') {

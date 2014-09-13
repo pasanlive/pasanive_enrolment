@@ -26,8 +26,9 @@ $string['student_number_caption'] = 'Student Number';
 $string['course_list_caption'] = 'Please select courses to enroll';
 
 // Content of admin page
-$string['academic_year'] = "Academic Year";
-$string['semester'] = 'Semester';
+$string['academic_year_caption'] = "Academic Year";
+$string['semester_caption'] = 'Semester';
+$string['group_caption'] = 'Group';
 $string['compulsory_courses_select_header'] = "Please mark compulsory courses";
 $string['add_courses_for_semester'] = 'Please add courses for this semester';
 
