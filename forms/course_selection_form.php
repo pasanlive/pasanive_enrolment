@@ -26,6 +26,9 @@ class course_slection_form extends moodleform {
 			}
 		}
 		
+		$mform->addElement('hidden', 'id', null);
+		$mform->setType('id', PARAM_INT);
+		
 		//normally you use add_action_buttons instead of this code
 		$buttonarray=array();
 		$buttonarray[] = &$mform->createElement('submit', 'submitbutton', get_string('savechanges'));

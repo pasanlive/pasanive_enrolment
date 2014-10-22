@@ -10,8 +10,14 @@
 require_once (dirname ( dirname ( dirname ( __FILE__ ) ) ) . '/config.php');
 require_once (dirname ( __FILE__ ) . '/lib.php');
 
+if (!isset($SESSION->addedCourses)) {
+	$SESSION->addedCourses = array();
+}
+
 global $CFG;
 global $COURSE, $USER;
+global $idNo;
+global $DB;
 
 $context = context_course::instance($COURSE->id);
 
@@ -24,7 +30,6 @@ $admins = get_admins();
 foreach($admins as $admin) {
 	if ($USER->id == $admin->id) {
 		$isadmin = true;
-		echo 'you are a admin user';
 		break;
 	}
 }
@@ -60,10 +65,11 @@ $context = context_module::instance ( $cm->id );
 
 add_to_log ( $course->id, 'pasanlive_enrolment', 'view', "view.php?id={$cm->id}", $pasanliveenrolment->id, $cm->id );
 
+$idNo = $cm->id;
 // / Print the page header
 $PAGE->set_url ( '/mod/pasanliveenrolment/view.php', array (
 		'id' => $cm->id 
-) );
+));
 $PAGE->set_title ( format_string ( $pasanliveenrolment->name ) );
 $PAGE->set_heading ( format_string ( $course->fullname ) );
 $PAGE->set_context ( $context );
@@ -78,7 +84,33 @@ echo $OUTPUT->heading ( 'Course Selection' );
 
 if ($isadmin) {
 	require_once 'forms/admin_form.php';
-	$mform = new admin_form();
+	$mform = new admin_form(null, array('acourses'=> $SESSION->addedCourses));
+	
+	
+	if ($mform->is_cancelled()) {
+		unset($SESSION->addedCourses);
+	} else if ($data = $mform->get_data()) {
+		print_r($data);
+		if (!empty($data->add_button) && !empty($data->available_course_list)) {
+			foreach ($data->available_course_list as $acourse) {
+				if (!isset($SESSION->addedCourses[$acourse])) {
+					$SESSION->addedCourses[$acourse] = $acourse;				
+				}
+			}	
+			
+		} else if (!empty($data->remove_button) && !empty($data->added_course_list)) {			
+			foreach ($data->added_course_list as $acourse) {
+				unset($SESSION->addedCourses[$acourse]);
+			}
+		} else if (!empty($data->submitbutton)) {
+			save_course_allocations($data, $SESSION->addedCourses);
+		}
+	} else {
+// 		unset($SESSION->addedCourses);	
+		$SESSION->addedCourses = array();	
+	}
+// 	unset($_POST);
+	$mform = new admin_form(null, array('acourses'=> $SESSION->addedCourses));
 	$mform->display();
 } else if ($isteacher) {
 	echo 'You are a teacher';
