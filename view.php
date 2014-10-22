@@ -116,7 +116,7 @@ if ($isadmin) {
 	echo 'You are a teacher';
 } else {
 	require_once ('forms/course_selection_form.php');
-	$mform = new course_slection_form();
+	$mform = new course_slection_form(null, array('courses'=>load_allocated_courses('2014', '0', '0')));
 	
 	$mform->display();
 }

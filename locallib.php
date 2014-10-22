@@ -28,7 +28,7 @@ function get_groups() {
 /**
  * Generate course list to display in select list views
  * @param $courseIdList
- * @return array§§
+ * @return array
  */
 function generate_course_list_for_select($courseIdList) {
     $all_course_list = get_courses();
@@ -61,16 +61,6 @@ function save_course_allocations($data, $selectedCourses) {
 	
 	$records = array();
 	
-	/*
-	 * <FIELD NAME="id" SEQUENCE="true" TYPE="int" NOTNULL="true" LENGTH="10" UNSIGNED="true" NEXT="group"/>
-            <FIELD NAME="group" SEQUENCE="false" TYPE="char" NOTNULL="true" LENGTH="10" PREVIOUS="id" NEXT="year"/>
-            <FIELD NAME="year" SEQUENCE="false" TYPE="char" NOTNULL="true" LENGTH="4" PREVIOUS="group" NEXT="semester"/>
-            <FIELD NAME="semester" SEQUENCE="false" TYPE="int" NOTNULL="true" LENGTH="1" PREVIOUS="year" NEXT="course_id"/>
-            <FIELD NAME="course_id" SEQUENCE="false" TYPE="char" NOTNULL="true" LENGTH="10" PREVIOUS="semester" NEXT="is_optional"/>
-            <FIELD NAME="is_compulsory" SEQUENCE="false" TYPE="int" NOTNULL="true" LENGTH="10" PREVIOUS="course_id" NEXT="timecreated"/>
-            <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="course_id" NEXT="timemodified"/>
-        	<FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="t
-	 */
 	$count = 0;
 	foreach ($selectedCourses as $courseId=>$course) {
 		$date = new DateTime();
@@ -89,8 +79,22 @@ function save_course_allocations($data, $selectedCourses) {
 	print_r($rec);
 	$lastinsertid = $DB->insert_record('pasanlive_course_allocation', $rec);
 	echo $lastinsertid;
-	}
+	}	
+}
+
+/**
+ * Load allocated courses by year, semester and student group
+ * 
+ * @param $year
+ * @param $semester
+ * @param group
+ * 
+ * @return array
+ * 
+ */
+function load_allocated_courses($year, $semester, $group) {
+	global $DB;
 	
-	
+	return $DB->get_records('pasanlive_course_allocation', array('year'=>$year, 'semester'=>$semester, 'group_id'=>$group));
 }
 

@@ -2,12 +2,15 @@
 
 // moodleform is defined in formslib.php
 require_once ("$CFG->libdir/formslib.php");
+require_once("locallib.php");
 class course_slection_form extends moodleform {
 	public function definition() {
 		global $CFG;
 		global $COURSE, $USER;	
 
 		$mform = $this->_form;
+		
+		$courses = $this->_customdata['courses'];
 		
 		$mform->addElement ( 'text', 'student_no', get_string('student_number_caption', 'pasanliveenrolment'), array('disabled'=>'true'));
 		$mform->setType ( 'student_no', PARAM_NOTAGS );
@@ -20,9 +23,17 @@ class course_slection_form extends moodleform {
 		$mform->addElement('header', 'nameforyourheaderelement', get_string('course_list_caption', 'pasanliveenrolment'));
 		$list = get_courses();
 		
-		foreach ( $list as $c ) {	
-			if ($c->category == '1') {
-				$mform->addElement("advcheckbox", 'course_' .$c->id, '', $c->idnumber . ' : ' . $c->fullname, array('group' => 1));
+		foreach ($courses as $course) {
+			foreach ( $list as $c ) {
+				if ($course->course_id == $c->idnumber) {
+					$attr_array = array('group' => 1);
+					if ($course->is_compulsory) {
+						$attr_array['disabled'] = 'disabled';
+					}
+					$mform->addElement("advcheckbox", 'course_' .$c->id, '', $c->idnumber . ' : ' . $c->fullname, $attr_array);
+					$mform->setDefault('course_' .$c->id, $course->is_compulsory);
+					continue;
+				}
 			}
 		}
 		
