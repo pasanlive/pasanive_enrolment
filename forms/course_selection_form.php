@@ -20,6 +20,8 @@ class course_slection_form extends moodleform {
 		$mform->setType ( 'student_name', PARAM_NOTAGS );
 		$mform->setDefault('student_name', $USER->firstname . ' ' . $USER->lastname);
 		
+		echo $USER->department;
+		
 		$mform->addElement('header', 'nameforyourheaderelement', get_string('course_list_caption', 'pasanliveenrolment'));
 		$list = get_courses();
 		

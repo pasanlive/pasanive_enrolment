@@ -83,35 +83,38 @@ $list = get_courses ();
 echo $OUTPUT->heading ( 'Course Selection' );
 
 if ($isadmin) {
-	require_once 'forms/admin_form.php';
-	$mform = new admin_form(null, array('acourses'=> $SESSION->addedCourses));
+		require_once 'forms/admin_form.php';
+		$mform = new admin_form(null, array('acourses'=> $SESSION->addedCourses));
 	
-	
-	if ($mform->is_cancelled()) {
-		unset($SESSION->addedCourses);
-	} else if ($data = $mform->get_data()) {
-		print_r($data);
-		if (!empty($data->add_button) && !empty($data->available_course_list)) {
-			foreach ($data->available_course_list as $acourse) {
-				if (!isset($SESSION->addedCourses[$acourse])) {
-					$SESSION->addedCourses[$acourse] = $acourse;				
-				}
-			}	
-			
-		} else if (!empty($data->remove_button) && !empty($data->added_course_list)) {			
-			foreach ($data->added_course_list as $acourse) {
-				unset($SESSION->addedCourses[$acourse]);
+		$isInitialDataSelected = false;
+		
+		if ($mform->is_cancelled()) {
+			unset($SESSION->addedCourses);
+		} else if ($data = $mform->get_data()) {
+			if (isset($data->group) && isset($data->semester)) {
+				$isInitialDataSelected = true;				
 			}
-		} else if (!empty($data->submitbutton)) {
-			save_course_allocations($data, $SESSION->addedCourses);
+			print_r($data);
+			if (!empty($data->add_button) && !empty($data->available_course_list)) {
+				foreach ($data->available_course_list as $acourse) {
+					if (!isset($SESSION->addedCourses[$acourse])) {
+						$SESSION->addedCourses[$acourse] = $acourse;
+					}
+				}					
+			} else if (!empty($data->remove_button) && !empty($data->added_course_list)) {
+				foreach ($data->added_course_list as $acourse) {
+					unset($SESSION->addedCourses[$acourse]);
+				}
+			} else if (!empty($data->submitbutton)) {
+				save_course_allocations($data, $SESSION->addedCourses);
+			}
+		} else {
+			unset($SESSION->addedCourses);
+// 			$SESSION->addedCourses = array();
 		}
-	} else {
-// 		unset($SESSION->addedCourses);	
-		$SESSION->addedCourses = array();	
-	}
-// 	unset($_POST);
-	$mform = new admin_form(null, array('acourses'=> $SESSION->addedCourses));
-	$mform->display();
+		// 	unset($_POST);
+		$mform = new admin_form(null, array('acourses'=> $SESSION->addedCourses, 'isInitialDataSet'=>$isInitialDataSelected));
+		$mform->display();
 } else if ($isteacher) {
 	echo 'You are a teacher';
 } else {
