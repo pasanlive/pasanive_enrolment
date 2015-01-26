@@ -40,13 +40,14 @@ class mod_pasanliveenrolment_mod_form extends moodleform_mod {
         // Adding the standard "intro" and "introformat" fields
         $this->add_intro_editor();
 
+        $mform->addElement('date_time_selector', 'assesstimestart', 'End Date');
         //-------------------------------------------------------------------------------
         // Adding the rest of pasanliveenrolment settings, spreeading all them into this fieldset
         // or adding more fieldsets ('header' elements) if needed for better logic
-        $mform->addElement('static', 'label1', 'pasanliveenrolmentsetting1', 'Your pasanliveenrolment fields go here. Replace me!');
+//         $mform->addElement('static', 'label1', 'pasanliveenrolmentsetting1', 'Your pasanliveenrolment fields go here. Replace me!');
 
-        $mform->addElement('header', 'pasanliveenrolmentfieldset', get_string('pasanliveenrolmentfieldset', 'pasanliveenrolment'));
-        $mform->addElement('static', 'label2', 'pasanliveenrolmentsetting2', 'Your pasanliveenrolment fields go here. Replace me!');
+//         $mform->addElement('header', 'pasanliveenrolmentfieldset', get_string('pasanliveenrolmentfieldset', 'pasanliveenrolment'));
+//         $mform->addElement('static', 'label2', 'pasanliveenrolmentsetting2', 'Your pasanliveenrolment fields go here. Replace me!');
 
         //-------------------------------------------------------------------------------
         // add standard elements, common to all modules

@@ -54,14 +54,14 @@
     
     <TABLE NAME="pasanlive_enrolment_course_s" COMMENT="Selected courses by students">
     	<FIELDS>
-    		<FIELD NAME="student_id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="courseid"/>
-    		<FIELD NAME="course_id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="Selected course id" PREVIOUS="studentid" NEXT="enrolment_id"/>
+    		<FIELD NAME="student_id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="course_id"/>
+            <FIELD NAME="course_id" SEQUENCE="false" TYPE="char" NOTNULL="true" LENGTH="10" PREVIOUS="course_id" NEXT="enrolment_id"/>
     		<FIELD NAME="enrolment_id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="enrolment id" PREVIOUS="course_id" NEXT="timecreated"/>
     		<FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="course_name" NEXT="timemodified"/>
         	<FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="timecreated"/>
     	</FIELDS>
     	<KEYS>
-    		<KEY NAME="primary" TYPE="primary" FIELDS="student_id"/>    		
+    		<KEY NAME="primary" TYPE="primary" FIELDS="student_id, course_id"/>
     	</KEYS>
     	
     	<INDEXES>

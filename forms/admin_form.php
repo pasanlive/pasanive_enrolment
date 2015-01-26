@@ -43,7 +43,7 @@ class admin_form extends moodleform {
 		
 		$mform->addElement('select', 'semester', get_string('semester_caption', 'pasanliveenrolment'), $semesters); 
 		
-		if ($isInitialDataSet) {
+// 		if ($isInitialDataSet) {
 		$mform->addElement('header', 'addCoursesForSemester', get_string('add_courses_for_semester', 'pasanliveenrolment'));
 		
 		$mform->addElement('html', '<div class="inline_block" style="display:inline; float:left">');
@@ -71,7 +71,7 @@ class admin_form extends moodleform {
 			if ($k != '0')
 				$mform->addElement("advcheckbox", 'course_' .$k, '', $c, array('group' => 1));			
 		}
-		}
+// 		}
 		$id = $idNo;
 		$mform->addElement('hidden', 'id', $id);
 		$mform->setType('id', PARAM_INT);
