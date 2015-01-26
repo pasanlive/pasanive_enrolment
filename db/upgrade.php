@@ -155,7 +155,7 @@ function xmldb_pasanliveenrolment_upgrade($oldversion) {
 		upgrade_mod_savepoint(true, 2014091300, 'pasanliveenrolment');
 	}
 	
-	if ($oldversion < 2014111504) {
+	if ($oldversion < 2014101704) {
 		$table = new xmldb_table('pasanlive_course_allocation');
 		
 		if ($dbman->table_exists($table)) {
@@ -186,41 +186,9 @@ function xmldb_pasanliveenrolment_upgrade($oldversion) {
 		$table->addKey($key);
 		
 		$status = $dbman->create_table($table);
-		upgrade_mod_savepoint(true, 2014111504, 'pasanliveenrolment');
+		upgrade_mod_savepoint(true, 2014101704, 'pasanliveenrolment');
 		
 	}
-
-    if ($oldversion < 2014112002) {
-        $table = new xmldb_table('pasanlive_enrolment_course_s');
-
-        if ($dbman->table_exists($table)) {
-            $dbman->drop_table($table, $continue=true, $feedback=true);
-        }
-
-        $field1 = new xmldb_field('id', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, XMLDB_SEQUENCE, null, null);
-        $field2 = new xmldb_field('student_id', XMLDB_TYPE_CHAR, '10', null, XMLDB_NOTNULL, null, null, 'id');
-        $field3 = new xmldb_field('course_id', XMLDB_TYPE_CHAR, '10', null, XMLDB_NOTNULL, null, null, 'student_id');
-        $field4 = new xmldb_field('enrolment_id', XMLDB_TYPE_CHAR, '10', null, XMLDB_NOTNULL, null, null, 'course_id');
-        $field5 = new xmldb_field('timecreated', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, '0','enrolment_id');
-        $field6 = new xmldb_field('timemodified', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, '0','timecreated');
-
-        $table->addField($field1);
-        $table->addField($field2);
-        $table->addField($field3);
-        $table->addField($field4);
-        $table->addField($field5);
-        $table->addField($field6);
-
-        $key = new xmldb_key('primary');
-        $key->set_attributes(XMLDB_KEY_PRIMARY, array('id'), null, null);
-
-        $table->addKey($key);
-
-        $dbman->create_table($table);
-
-        upgrade_mod_savepoint(true, 2014112002, 'pasanliveenrolment');
-
-    }
 
 
 	return true;

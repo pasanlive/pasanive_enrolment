@@ -101,7 +101,7 @@ function pasanliveenrolment_delete_instance($id) {
 
     # Delete any dependent records here #
 
-    $DB->delete_records('pasanliveenrolment', array('id' => $pasanliveenrolment->id));
+    $DB->delete_records('pasanlive_enrolment', array('id' => $pasanliveenrolment->id));
 
     return true;
 }

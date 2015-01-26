@@ -24,8 +24,6 @@ $string['pasanlive_enrolment_tname'] = "Title";
 $string['student_name_caption'] = 'Student Name';
 $string['student_number_caption'] = 'Student Number';
 $string['course_list_caption'] = 'Please select courses to enroll';
-$string['course_already_selected_warning'] = 'You have already submitted the course selection form. This modifications will update your previous submission.';
-$string['course_selection_form_submit_success'] = 'Course enrolment form submitted successfully.';
 
 // Content of admin page
 $string['academic_year_caption'] = "Academic Year";
