@@ -121,6 +121,40 @@ if ($isadmin) {
 	require_once ('forms/course_selection_form.php');
 	$mform = new course_slection_form(null, array('courses'=>load_allocated_courses('2014', '0', '0')));
 	
+	if ($mform->is_cancelled()) {
+		
+	} else if ($data = $mform->get_data()) {
+		
+//		print_r($data);
+
+        $studentId = $USER->idnumber;
+
+        $courses = array();
+
+
+		if ($data->submitbutton) {
+            $courses = filter_selected_courses($data, get_courses());
+
+//            print("<br/>");
+//            print("<br/>");
+//            print_r($courses);
+//            print("<br/>");
+
+            if (is_enrolment_info_exist($studentId, 1, 2014)) {
+                update_course_selection($studentId, 1, 2014, $courses);
+            } else {
+                save_course_selection($studentId, 1, 2014, $courses);
+            }
+
+            require_once('forms/course_selection_success_form.php');
+
+            $mform = new course_slection_success_form();
+		}
+		
+	} else {
+		
+	}
+	
 	$mform->display();
 }
 
